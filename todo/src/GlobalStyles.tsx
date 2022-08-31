@@ -8,5 +8,6 @@ export const GlobalStyle = createGlobalStyle`
   }
   body{
     line-height: 1.6;
+    background-color: #FB3640;
   }
 `;
