@@ -1,6 +1,5 @@
 import { createContext, ReactNode } from "react";
 import { useState } from "react";
-import Task from "../components/Task";
 import { ITask } from "../interface";
 
 type TaskContextProps = {
@@ -12,8 +11,8 @@ type TaskContextType = {
   setTask: (newState: string) => void;
   id: number;
   setId: (newState: number) => void;
-  todoList: {};
-  setTodoList: (newState: []) => void;
+  todoList: ITask[];
+  setTodoList: (newState: ITask[]) => void;
 };
 
 const initialValue = {
@@ -21,8 +20,8 @@ const initialValue = {
   setTask: () => "",
   id: 1,
   setId: () => 1,
-  todoList: {},
-  setTodoList: () => [{ task: initialValue.task, id: initialValue.id }],
+  todoList: [],
+  setTodoList: () => {},
 };
 
 export const TaskContext = createContext<TaskContextType>(initialValue);

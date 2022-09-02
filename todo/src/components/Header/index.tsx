@@ -8,6 +8,9 @@ const Header = () => {
 
   const handleSubmit = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
+      const newTask = { taskName: task, id: id };
+      setTodoList([...todoList, newTask]);
+      console.log(todoList);
       setTask("");
     }
   };
