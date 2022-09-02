@@ -12,5 +12,9 @@ export const Container = styled.main`
   flex-direction: column;
   background-color: #3b424a;
   color: #ffffff;
-  padding: 4em;
+  padding: 3em;
+
+  @media screen and (max-width: 768px) {
+    padding: 2em;
+  }
 `;
