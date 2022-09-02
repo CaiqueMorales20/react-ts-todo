@@ -23,6 +23,7 @@ export const GlobalStyle = createGlobalStyle`
     height: auto;
   }
   * span {
+  -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
      -khtml-user-select: none; /* Konqueror HTML */
