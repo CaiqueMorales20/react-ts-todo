@@ -10,7 +10,8 @@ import { TaskListS } from "./style";
 
 // Functional Component
 const TaskList: React.FC = () => {
-  const { todoList, setTodoList } = useContext(TaskContext);
+  const { todoList, setTodoList, pinnedTodoList, setPinnedTodoList } =
+    useContext(TaskContext);
 
   const deleteTask = (taskIdToDelete: number) => {
     setTodoList(
@@ -20,13 +21,55 @@ const TaskList: React.FC = () => {
     );
   };
 
-  const pinTask = (taskIdToPin: number) => {};
+  const pinTask = (taskIdToPin: number) => {
+    // Removing from previous todoList
+    setTodoList(
+      todoList.filter((task) => {
+        return task.id !== taskIdToPin;
+      })
+    );
+
+    const pinnedTask = todoList.filter((task) => {
+      return task.id === taskIdToPin;
+    });
+
+    // Adding to pinnedTodoList
+    const filteredTask = {
+      taskName: pinnedTask[0].taskName,
+      id: pinnedTask[0].id,
+    };
+
+    setPinnedTodoList([...pinnedTodoList, filteredTask]);
+  };
 
   return (
     <TaskListS>
-      {todoList.map((task) => {
-        return <Task task={task} key={task.id} deleteTask={deleteTask} />;
-      })}
+      {pinnedTodoList.length > 0 && (
+        <ul>
+          {pinnedTodoList.map((task) => {
+            return (
+              <Task
+                task={task}
+                key={task.id}
+                deleteTask={deleteTask}
+                pinTask={pinTask}
+              />
+            );
+          })}
+        </ul>
+      )}
+      <ul>
+        {todoList.map((task) => {
+          return (
+            <Task
+              task={task}
+              key={task.id}
+              deleteTask={deleteTask}
+              pinTask={pinTask}
+            />
+          );
+        })}
+      </ul>
     </TaskListS>
   );
 };

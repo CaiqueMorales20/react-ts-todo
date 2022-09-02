@@ -17,9 +17,10 @@ interface PropsType {
   checkedButton?: boolean;
   task: ITask;
   deleteTask(taskIdToDelete: number): void;
+  pinTask(pinIdToDelete: number): void;
 }
 
-const Task: FC<PropsType> = ({ task, deleteTask }: PropsType) => {
+const Task: FC<PropsType> = ({ task, deleteTask, pinTask }: PropsType) => {
   const [checked, setChecked] = useState<boolean>(false);
   const [menuOpened, setMenuOpened] = useState<boolean>(false);
 
@@ -45,7 +46,7 @@ const Task: FC<PropsType> = ({ task, deleteTask }: PropsType) => {
         {menuOpened && (
           <Options>
             <ul>
-              <li>
+              <li onClick={() => pinTask(task.id)}>
                 <span className="material-symbols-outlined">push_pin</span>
                 <p>Pin on the Top</p>
               </li>
