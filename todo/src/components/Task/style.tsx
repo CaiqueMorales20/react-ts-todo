@@ -8,11 +8,19 @@ export const TaskS = styled.li`
   display: flex;
   justify-content: space-between;
 
-  & > div {
-    display: flex;
-    align-items: center;
-    gap: 0.5em;
+  & > *:first-child {
+    flex: 2fr;
   }
+
+  & > *:last-child {
+    flex: 1fr;
+  }
+`;
+
+export const TaskItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
 `;
 
 export const CheckButton = styled.button<ButtonProps>`
@@ -33,6 +41,9 @@ export const CheckButton = styled.button<ButtonProps>`
 `;
 
 export const TaskDescription = styled.p<ButtonProps>`
+  position: relative;
+  left: 0;
+  top: 0;
   margin-bottom: -0.5rem;
 
   /* When Checked */
@@ -43,4 +54,36 @@ export const TaskDescription = styled.p<ButtonProps>`
         `
       : ""}
   color: white;
+`;
+
+export const Dots = styled.div`
+  position: relative;
+`;
+
+export const DotsIcon = styled.span`
+  cursor: pointer;
+`;
+
+export const Options = styled.div`
+  background-color: #484f59;
+  width: max-content;
+  position: absolute;
+  right: 0rem;
+  top: 2rem;
+  padding: 1em;
+  z-index: 1;
+
+  & > ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1em;
+  }
+
+  & > ul > li {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    cursor: pointer;
+  }
 `;
