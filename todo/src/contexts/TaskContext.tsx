@@ -19,7 +19,7 @@ const initialValue = {
   task: "",
   setTask: () => "",
   id: 1,
-  setId: () => 1,
+  setId: () => {},
   todoList: [],
   setTodoList: () => {},
 };

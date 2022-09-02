@@ -1,4 +1,8 @@
-import { FC, useState } from "react";
+// Imports
+import { FC, useContext, useState } from "react";
+import { TaskContext } from "../../contexts/TaskContext";
+
+// Styled Components
 import {
   CheckButton,
   Dots,
@@ -9,21 +13,26 @@ import {
   TaskS,
 } from "./style";
 
-interface ButtonProps {
+interface PropsType {
   checkedButton?: boolean;
+  taskName: string;
 }
 
-const Task: FC<ButtonProps> = ({ checkedButton }) => {
+interface Props {
+  taskName: string;
+}
+
+const Task: FC<PropsType> = (props: Props) => {
   const [checked, setChecked] = useState<boolean>(false);
   const [menuOpened, setMenuOpened] = useState<boolean>(false);
+
+  const { todoList, setTodoList } = useContext(TaskContext);
 
   const handleCheck = (): void => {
     setChecked(!checked);
   };
 
-  const deleteTask = (): void => {
-    alert("Delete");
-  };
+  const deleteTask = (): void => {};
 
   const pinTask = (): void => {
     alert("Pin");
@@ -34,7 +43,7 @@ const Task: FC<ButtonProps> = ({ checkedButton }) => {
       <TaskItem>
         <CheckButton onClick={handleCheck} checkedButton={checked} />
         <TaskDescription checkedButton={checked}>
-          Finish coding todo app
+          {props.taskName}
         </TaskDescription>
       </TaskItem>
       <Dots>

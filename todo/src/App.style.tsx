@@ -5,6 +5,7 @@ export const Container = styled.main`
   inset: 0;
   width: min(30rem, 90%);
   min-height: 30rem;
+  height: max-content;
   border-radius: 0.5rem;
   margin-inline: auto;
   margin-block: 4rem;

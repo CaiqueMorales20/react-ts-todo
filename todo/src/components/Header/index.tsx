@@ -6,12 +6,18 @@ const Header = () => {
   const { task, setTask, todoList, setTodoList, id, setId } =
     useContext(TaskContext);
 
-  const handleSubmit = (e: React.KeyboardEvent) => {
+  const addTask = (e: React.KeyboardEvent) => {
+    if (task.length <= 0) return;
     if (e.key === "Enter") {
       const newTask = { taskName: task, id: id };
-      setTodoList([...todoList, newTask]);
-      console.log(todoList);
-      setTask("");
+      if (id === 0) setId(1);
+      setId(id + 1);
+      if ([...todoList]) setTodoList([...todoList, newTask]);
+      while (id < 1) {
+        setTodoList([...todoList, newTask]);
+        console.log(todoList);
+      }
+      console.log(id);
     }
   };
 
@@ -25,7 +31,7 @@ const Header = () => {
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setTask(e.target.value)
         }
-        onKeyDown={handleSubmit}
+        onKeyDown={addTask}
       />
     </HeaderS>
   );
