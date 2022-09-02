@@ -15,9 +15,8 @@ const Header = () => {
       if ([...todoList]) setTodoList([...todoList, newTask]);
       while (id < 1) {
         setTodoList([...todoList, newTask]);
-        console.log(todoList);
       }
-      console.log(id);
+      setTask("");
     }
   };
 
