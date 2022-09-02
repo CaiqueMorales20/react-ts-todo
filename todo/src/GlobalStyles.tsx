@@ -9,6 +9,10 @@ export const GlobalStyle = createGlobalStyle`
   body{
     line-height: 1.6;
     background-color: #cd3c43;
+    font-family: 'Anek Telugu', sans-serif;
+  }
+  ul{
+    list-style: none;
   }
   input{
     border: none;

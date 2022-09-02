@@ -7,12 +7,14 @@ import Header from "./components/Header";
 
 // Styled Component
 import { Container } from "./App.style";
+import TaskList from "./components/TaskList";
 
 const App: FC = () => {
   return (
     <Container>
       <GlobalStyle />
       <Header />
+      <TaskList />
     </Container>
   );
 };

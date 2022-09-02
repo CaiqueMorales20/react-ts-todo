@@ -10,7 +10,6 @@ export const Container = styled.main`
   margin-block: 4rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
   background-color: #3b424a;
   color: #ffffff;
   padding: 4em;
