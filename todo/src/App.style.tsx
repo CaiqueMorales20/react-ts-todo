@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.main`
-  position: absolute;
-  inset: 0;
   width: min(30rem, 90%);
-  min-height: 30rem;
+  min-height: 35rem;
   height: max-content;
   border-radius: 0.5rem;
   margin-inline: auto;

@@ -1,6 +1,6 @@
 // Imports
-import { FC, useContext, useState } from "react";
-import { TaskContext } from "../../contexts/TaskContext";
+import { FC, useState } from "react";
+import { ITask } from "../../interface";
 
 // Styled Components
 import {
@@ -15,27 +15,16 @@ import {
 
 interface PropsType {
   checkedButton?: boolean;
-  taskName: string;
+  task: ITask;
+  deleteTask(taskIdToDelete: number): void;
 }
 
-interface Props {
-  taskName: string;
-}
-
-const Task: FC<PropsType> = (props: Props) => {
+const Task: FC<PropsType> = ({ task, deleteTask }: PropsType) => {
   const [checked, setChecked] = useState<boolean>(false);
   const [menuOpened, setMenuOpened] = useState<boolean>(false);
 
-  const { todoList, setTodoList } = useContext(TaskContext);
-
   const handleCheck = (): void => {
     setChecked(!checked);
-  };
-
-  const deleteTask = (): void => {};
-
-  const pinTask = (): void => {
-    alert("Pin");
   };
 
   return (
@@ -43,30 +32,30 @@ const Task: FC<PropsType> = (props: Props) => {
       <TaskItem>
         <CheckButton onClick={handleCheck} checkedButton={checked} />
         <TaskDescription checkedButton={checked}>
-          {props.taskName}
+          {task.taskName}
         </TaskDescription>
       </TaskItem>
       <Dots>
-        {menuOpened && (
-          <Options>
-            <ul>
-              <li onClick={pinTask}>
-                <span className="material-symbols-outlined">push_pin</span>
-                <p>Pin on the Top</p>
-              </li>
-              <li onClick={deleteTask}>
-                <span className="material-symbols-outlined">delete</span>
-                <p>Delete</p>
-              </li>
-            </ul>
-          </Options>
-        )}
         <DotsIcon
           onClick={() => setMenuOpened(!menuOpened)}
           className="material-symbols-outlined"
         >
           more_horiz
         </DotsIcon>
+        {menuOpened && (
+          <Options>
+            <ul>
+              <li>
+                <span className="material-symbols-outlined">push_pin</span>
+                <p>Pin on the Top</p>
+              </li>
+              <li onClick={() => deleteTask(task.id)}>
+                <span className="material-symbols-outlined">delete</span>
+                <p>Delete</p>
+              </li>
+            </ul>
+          </Options>
+        )}
       </Dots>
     </TaskS>
   );
