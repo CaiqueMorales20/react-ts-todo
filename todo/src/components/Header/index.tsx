@@ -1,13 +1,14 @@
-import { ChangeEvent, useState } from "react";
+import { useContext } from "react";
+import { TaskContext } from "../../contexts/TaskContext";
 import { HeaderS, InputS, IconS } from "./style";
 
 const Header = () => {
-  const [message, setMessage] = useState<string>("");
+  const { task, setTask, todoList, setTodoList, id, setId } =
+    useContext(TaskContext);
 
   const handleSubmit = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
-      alert(`Sua tarefa é: ${message}`);
-      setMessage("");
+      setTask("");
     }
   };
 
@@ -17,9 +18,9 @@ const Header = () => {
       <InputS
         type="text"
         placeholder="Add a task ..."
-        value={message}
+        value={task}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setMessage(e.target.value)
+          setTask(e.target.value)
         }
         onKeyDown={handleSubmit}
       />

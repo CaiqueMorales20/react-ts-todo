@@ -1,6 +1,7 @@
 // Imports
-import { FC } from "react";
+import { FC, useContext } from "react";
 import { GlobalStyle } from "./GlobalStyles";
+import { TaskContextProvider } from "./contexts/TaskContext";
 
 // Components
 import Header from "./components/Header";
@@ -11,11 +12,13 @@ import TaskList from "./components/TaskList";
 
 const App: FC = () => {
   return (
-    <Container>
-      <GlobalStyle />
-      <Header />
-      <TaskList />
-    </Container>
+    <TaskContextProvider>
+      <Container>
+        <GlobalStyle />
+        <Header />
+        <TaskList />
+      </Container>
+    </TaskContextProvider>
   );
 };
 

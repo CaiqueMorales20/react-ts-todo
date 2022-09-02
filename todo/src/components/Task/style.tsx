@@ -53,7 +53,7 @@ export const TaskDescription = styled.p<ButtonProps>`
           text-decoration: line-through;
         `
       : ""}
-  color: white;
+  color: #fff;
 `;
 
 export const Dots = styled.div`

@@ -1,0 +1,42 @@
+import { createContext, ReactNode } from "react";
+import { useState } from "react";
+import Task from "../components/Task";
+import { ITask } from "../interface";
+
+type TaskContextProps = {
+  children: ReactNode;
+};
+
+type TaskContextType = {
+  task: string;
+  setTask: (newState: string) => void;
+  id: number;
+  setId: (newState: number) => void;
+  todoList: {};
+  setTodoList: (newState: []) => void;
+};
+
+const initialValue = {
+  task: "",
+  setTask: () => "",
+  id: 1,
+  setId: () => 1,
+  todoList: {},
+  setTodoList: () => [{ task: initialValue.task, id: initialValue.id }],
+};
+
+export const TaskContext = createContext<TaskContextType>(initialValue);
+
+export const TaskContextProvider = ({ children }: TaskContextProps) => {
+  const [id, setId] = useState(initialValue.id);
+  const [task, setTask] = useState(initialValue.task);
+  const [todoList, setTodoList] = useState<ITask[]>([]);
+
+  return (
+    <TaskContext.Provider
+      value={{ task, setTask, id, setId, todoList, setTodoList }}
+    >
+      {children}
+    </TaskContext.Provider>
+  );
+};
