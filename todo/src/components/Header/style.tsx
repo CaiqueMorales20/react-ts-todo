@@ -2,8 +2,6 @@ import styled from "styled-components";
 
 export const HeaderS = styled.header`
   position: relative;
-  display: flex;
-  align-items: center;
 `;
 
 export const InputS = styled.input`
