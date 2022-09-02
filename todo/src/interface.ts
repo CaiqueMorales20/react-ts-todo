@@ -1,4 +1,5 @@
 export interface ITask {
   taskName: string;
-  id: number;
+  id: number
+  isPinned: boolean;
 }

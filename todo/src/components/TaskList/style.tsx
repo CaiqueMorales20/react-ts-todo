@@ -8,9 +8,9 @@ export const TaskListS = styled.div`
     flex-direction: column;
     gap: 1.5em;
   }
+`;
 
-  & > ul:first-child {
-    padding-bottom: 2em;
-    border-bottom: 2px solid #373e46;
-  }
+export const PinnedTaskList = styled.ul`
+  padding-bottom: 2em;
+  border-bottom: 2px solid #373e46;
 `;

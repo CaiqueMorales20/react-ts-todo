@@ -16,8 +16,8 @@ import {
 interface PropsType {
   checkedButton?: boolean;
   task: ITask;
-  deleteTask(taskIdToDelete: number): void;
-  pinTask(pinIdToDelete: number): void;
+  deleteTask(taskIdToDelete: number, isPinned: boolean): void;
+  pinTask(pinIdToDelete: number, isPinned: boolean): void;
 }
 
 const Task: FC<PropsType> = ({ task, deleteTask, pinTask }: PropsType) => {
@@ -46,11 +46,11 @@ const Task: FC<PropsType> = ({ task, deleteTask, pinTask }: PropsType) => {
         {menuOpened && (
           <Options>
             <ul>
-              <li onClick={() => pinTask(task.id)}>
+              <li onClick={() => pinTask(task.id, task.isPinned)}>
                 <span className="material-symbols-outlined">push_pin</span>
-                <p>Pin on the Top</p>
+                <p>{task.isPinned ? "Unpin" : "Pin on the Top"}</p>
               </li>
-              <li onClick={() => deleteTask(task.id)}>
+              <li onClick={() => deleteTask(task.id, task.isPinned)}>
                 <span className="material-symbols-outlined">delete</span>
                 <p>Delete</p>
               </li>

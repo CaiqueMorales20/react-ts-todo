@@ -6,22 +6,52 @@ import { TaskContext } from "../../contexts/TaskContext";
 import Task from "../Task";
 
 // Styled Components
-import { TaskListS } from "./style";
+import { PinnedTaskList, TaskListS } from "./style";
 
 // Functional Component
 const TaskList: React.FC = () => {
   const { todoList, setTodoList, pinnedTodoList, setPinnedTodoList } =
     useContext(TaskContext);
 
-  const deleteTask = (taskIdToDelete: number) => {
-    setTodoList(
-      todoList.filter((task) => {
-        return task.id !== taskIdToDelete;
-      })
-    );
+  const deleteTask = (taskIdToDelete: number, isPinned: boolean) => {
+    {
+      isPinned
+        ? setPinnedTodoList(
+            pinnedTodoList.filter((task) => {
+              return task.id !== taskIdToDelete;
+            })
+          )
+        : setTodoList(
+            todoList.filter((task) => {
+              return task.id !== taskIdToDelete;
+            })
+          );
+    }
+
+    console.log(taskIdToDelete);
   };
 
-  const pinTask = (taskIdToPin: number) => {
+  const pinTask = (taskIdToPin: number, isPinned: boolean) => {
+    if (isPinned === true) {
+      setPinnedTodoList(
+        pinnedTodoList.filter((task) => {
+          return task.id !== taskIdToPin;
+        })
+      );
+
+      const unpinnedTask = pinnedTodoList.filter((task) => {
+        return task.id === taskIdToPin;
+      });
+
+      const filteredTask = {
+        taskName: unpinnedTask[0].taskName,
+        id: unpinnedTask[0].id,
+        isPinned: false,
+      };
+
+      return setTodoList([...todoList, filteredTask]);
+    }
+
     // Removing from previous todoList
     setTodoList(
       todoList.filter((task) => {
@@ -37,6 +67,7 @@ const TaskList: React.FC = () => {
     const filteredTask = {
       taskName: pinnedTask[0].taskName,
       id: pinnedTask[0].id,
+      isPinned: true,
     };
 
     setPinnedTodoList([...pinnedTodoList, filteredTask]);
@@ -45,7 +76,7 @@ const TaskList: React.FC = () => {
   return (
     <TaskListS>
       {pinnedTodoList.length > 0 && (
-        <ul>
+        <PinnedTaskList>
           {pinnedTodoList.map((task) => {
             return (
               <Task
@@ -56,7 +87,7 @@ const TaskList: React.FC = () => {
               />
             );
           })}
-        </ul>
+        </PinnedTaskList>
       )}
       <ul>
         {todoList.map((task) => {

@@ -15,6 +15,7 @@ type TaskContextType = {
   setTodoList: (newState: ITask[]) => void;
   pinnedTodoList: ITask[];
   setPinnedTodoList: (newState: ITask[]) => void;
+  isPinned: boolean;
 };
 
 const initialValue = {
@@ -22,6 +23,7 @@ const initialValue = {
   setTask: () => "",
   id: 1,
   setId: () => {},
+  isPinned: false,
   todoList: [],
   setTodoList: () => {},
   pinnedTodoList: [],
@@ -35,6 +37,7 @@ export const TaskContextProvider = ({ children }: TaskContextProps) => {
   const [task, setTask] = useState(initialValue.task);
   const [todoList, setTodoList] = useState<ITask[]>([]);
   const [pinnedTodoList, setPinnedTodoList] = useState<ITask[]>([]);
+  const isPinned = initialValue.isPinned;
 
   return (
     <TaskContext.Provider
@@ -43,6 +46,7 @@ export const TaskContextProvider = ({ children }: TaskContextProps) => {
         setTask,
         id,
         setId,
+        isPinned,
         todoList,
         setTodoList,
         pinnedTodoList,
