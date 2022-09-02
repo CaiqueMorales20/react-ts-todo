@@ -58,6 +58,7 @@ export const TaskDescription = styled.p<ButtonProps>`
 
 export const Dots = styled.div`
   position: relative;
+  font-size: 0.6rem;
 `;
 
 export const DotsIcon = styled.span`
