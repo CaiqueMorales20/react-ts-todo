@@ -77,11 +77,11 @@ const TaskList: React.FC = () => {
     <TaskListS>
       {pinnedTodoList.length > 0 && (
         <PinnedTaskList>
-          {pinnedTodoList.map((task) => {
+          {pinnedTodoList.map((task, index) => {
             return (
               <Task
                 task={task}
-                key={task.id}
+                key={index}
                 deleteTask={deleteTask}
                 pinTask={pinTask}
               />
@@ -90,11 +90,11 @@ const TaskList: React.FC = () => {
         </PinnedTaskList>
       )}
       <ul>
-        {todoList.map((task) => {
+        {todoList.map((task, index) => {
           return (
             <Task
               task={task}
-              key={task.id}
+              key={index}
               deleteTask={deleteTask}
               pinTask={pinTask}
             />

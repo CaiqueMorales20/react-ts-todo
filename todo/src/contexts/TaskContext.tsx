@@ -1,6 +1,7 @@
 import { createContext, ReactNode } from "react";
 import { useState } from "react";
 import { ITask } from "../interface";
+import useLocalStorage from "../useLocalStorage";
 
 type TaskContextProps = {
   children: ReactNode;
@@ -35,8 +36,11 @@ export const TaskContext = createContext<TaskContextType>(initialValue);
 export const TaskContextProvider = ({ children }: TaskContextProps) => {
   const [id, setId] = useState(initialValue.id);
   const [task, setTask] = useState(initialValue.task);
-  const [todoList, setTodoList] = useState<ITask[]>([]);
-  const [pinnedTodoList, setPinnedTodoList] = useState<ITask[]>([]);
+  const [todoList, setTodoList] = useLocalStorage<ITask[]>("todoList", []);
+  const [pinnedTodoList, setPinnedTodoList] = useLocalStorage<ITask[]>(
+    "pinnedTodoList",
+    []
+  );
   const isPinned = initialValue.isPinned;
 
   return (

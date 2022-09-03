@@ -12,6 +12,7 @@ const Header = () => {
       const newTask = { taskName: task, id: id, isPinned: false };
       if (id === 0) setId(1);
       setId(id + 1);
+      console.log(id);
       if ([...todoList]) setTodoList([...todoList, newTask]);
       while (id < 1) {
         setTodoList([...todoList, newTask]);
