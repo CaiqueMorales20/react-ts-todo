@@ -46,13 +46,17 @@ const Task: FC<PropsType> = ({ task, deleteTask, pinTask }: PropsType) => {
         {menuOpened && (
           <Options>
             <ul>
-              <li onClick={() => pinTask(task.id, task.isPinned)}>
-                <span className="material-symbols-outlined">push_pin</span>
-                <p>{task.isPinned ? "Unpin" : "Pin on the Top"}</p>
+              <li onClick={() => setMenuOpened(!menuOpened)}>
+                <li onClick={() => pinTask(task.id, task.isPinned)}>
+                  <span className="material-symbols-outlined">push_pin</span>
+                  <p>{task.isPinned ? "Unpin" : "Pin on the Top"}</p>
+                </li>
               </li>
-              <li onClick={() => deleteTask(task.id, task.isPinned)}>
-                <span className="material-symbols-outlined">delete</span>
-                <p>Delete</p>
+              <li onClick={() => setMenuOpened(!menuOpened)}>
+                <li onClick={() => deleteTask(task.id, task.isPinned)}>
+                  <span className="material-symbols-outlined">delete</span>
+                  <p>Delete</p>
+                </li>
               </li>
             </ul>
           </Options>

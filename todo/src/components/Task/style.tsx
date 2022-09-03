@@ -81,7 +81,7 @@ export const Options = styled.div`
     gap: 1em;
   }
 
-  & > ul > li {
+  & > ul li {
     display: flex;
     align-items: center;
     gap: 0.5em;

@@ -6,9 +6,17 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     box-sizing: border-box;
   }
+  html,
   body{
+    width: 100%;
+    height: 100vh;
+    /* overflow: hidden; */
+  }
+  body{
+    margin: 0;
     line-height: 1.6;
-    background-color: #cd3c43;
+    max-height: 90vh;
+    background: linear-gradient(160deg, #e42e2e 50%, #272727 50%) fixed;
     font-family: 'Anek Telugu', sans-serif;
   }
   ul{
@@ -22,13 +30,13 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
     height: auto;
   }
-  * span {
+  span {
   -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+  -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+     -khtml-user-select: none; 
+       -moz-user-select: none; 
+        -ms-user-select: none; 
+            user-select: none; 
   }
 `;
