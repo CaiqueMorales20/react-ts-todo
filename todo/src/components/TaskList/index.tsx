@@ -27,8 +27,6 @@ const TaskList: React.FC = () => {
             })
           );
     }
-
-    console.log(taskIdToDelete);
   };
 
   const pinTask = (taskIdToPin: number, isPinned: boolean) => {
