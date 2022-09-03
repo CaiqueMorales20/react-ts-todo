@@ -9,7 +9,7 @@ const Header = () => {
   const addTask = (e: React.KeyboardEvent) => {
     if (task.length <= 0) return;
     if (e.key === "Enter") {
-      const newTask = { taskName: task, id: id };
+      const newTask = { taskName: task, id: id, isPinned: false };
       if (id === 0) setId(1);
       setId(id + 1);
       if ([...todoList]) setTodoList([...todoList, newTask]);
