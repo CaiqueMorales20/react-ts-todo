@@ -81,10 +81,18 @@ export const Options = styled.div`
     gap: 1em;
   }
 
-  & > ul li {
+  & > ul li,
+  & > ul div {
     display: flex;
     align-items: center;
     gap: 0.5em;
     cursor: pointer;
   }
+`;
+
+export const RenameInput = styled.input`
+  background-color: #484f59;
+  padding: 0.5em 1em;
+  color: #ffffff;
+  border: 1px solid #2c3137;
 `;

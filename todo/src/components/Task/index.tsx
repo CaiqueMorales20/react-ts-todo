@@ -1,5 +1,5 @@
 // Imports
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
 import { ITask } from "../../interface";
 
 // Styled Components
@@ -8,6 +8,7 @@ import {
   Dots,
   DotsIcon,
   Options,
+  RenameInput,
   TaskDescription,
   TaskItem,
   TaskS,
@@ -23,18 +24,29 @@ interface PropsType {
 const Task: FC<PropsType> = ({ task, deleteTask, pinTask }: PropsType) => {
   const [checked, setChecked] = useState<boolean>(false);
   const [menuOpened, setMenuOpened] = useState<boolean>(false);
+  const [renameMenuOpened, setRenameMenuOpened] = useState<boolean>(false);
 
   const handleCheck = (): void => {
     setChecked(!checked);
+  };
+
+  const handleEnter = (e: React.KeyboardEvent): void => {
+    if (e.key === "Enter") {
+      setRenameMenuOpened(false);
+    }
   };
 
   return (
     <TaskS>
       <TaskItem>
         <CheckButton onClick={handleCheck} checkedButton={checked} />
-        <TaskDescription checkedButton={checked}>
-          {task.taskName}
-        </TaskDescription>
+        {renameMenuOpened ? (
+          <RenameInput type="text" onKeyDown={handleEnter} />
+        ) : (
+          <TaskDescription checkedButton={checked}>
+            {task.taskName}
+          </TaskDescription>
+        )}
       </TaskItem>
       <Dots>
         <DotsIcon
@@ -47,24 +59,24 @@ const Task: FC<PropsType> = ({ task, deleteTask, pinTask }: PropsType) => {
           <Options>
             <ul>
               <li onClick={() => setMenuOpened(!menuOpened)}>
-                <li onClick={() => pinTask(task.id, task.isPinned)}>
+                <div onClick={() => setRenameMenuOpened(!renameMenuOpened)}>
                   <span className="material-symbols-outlined">
                     drive_file_rename_outline
                   </span>
                   <p>Rename</p>
-                </li>
+                </div>
               </li>
               <li onClick={() => setMenuOpened(!menuOpened)}>
-                <li onClick={() => pinTask(task.id, task.isPinned)}>
+                <div onClick={() => pinTask(task.id, task.isPinned)}>
                   <span className="material-symbols-outlined">push_pin</span>
                   <p>{task.isPinned ? "Unpin" : "Pin on the Top"}</p>
-                </li>
+                </div>
               </li>
               <li onClick={() => setMenuOpened(!menuOpened)}>
-                <li onClick={() => deleteTask(task.id, task.isPinned)}>
+                <div onClick={() => deleteTask(task.id, task.isPinned)}>
                   <span className="material-symbols-outlined">delete</span>
                   <p>Delete</p>
-                </li>
+                </div>
               </li>
             </ul>
           </Options>

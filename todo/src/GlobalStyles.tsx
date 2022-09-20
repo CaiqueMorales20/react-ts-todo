@@ -16,7 +16,8 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     line-height: 1.6;
     max-height: 90vh;
-    background: linear-gradient(160deg, #e42e2e 50%, #272727 50%) fixed;
+    background-color: #FF3CAC;  
+    background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
     font-family: 'Anek Telugu', sans-serif;
   }
   ul{
