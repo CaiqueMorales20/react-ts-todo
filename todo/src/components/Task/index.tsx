@@ -1,5 +1,5 @@
 // Imports
-import React, { FC, useState } from "react";
+import React, { FC, useState, useRef, useEffect } from "react";
 import { ITask } from "../../interface";
 
 // Styled Components
@@ -25,6 +25,25 @@ const Task: FC<PropsType> = ({ task, deleteTask, pinTask }: PropsType) => {
   const [checked, setChecked] = useState<boolean>(false);
   const [menuOpened, setMenuOpened] = useState<boolean>(false);
   const [renameMenuOpened, setRenameMenuOpened] = useState<boolean>(false);
+
+  function useOutsideAlerter(ref: any) {
+    useEffect(() => {
+      function handleClickOutside(event: any) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          setMenuOpened(false);
+        }
+      }
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+  }
+
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef);
 
   const handleCheck = (): void => {
     setChecked(!checked);
@@ -60,7 +79,7 @@ const Task: FC<PropsType> = ({ task, deleteTask, pinTask }: PropsType) => {
           more_horiz
         </DotsIcon>
         {menuOpened && (
-          <Options>
+          <Options ref={wrapperRef}>
             <ul>
               <li onClick={() => setMenuOpened(!menuOpened)}>
                 <div onClick={() => setRenameMenuOpened(!renameMenuOpened)}>
