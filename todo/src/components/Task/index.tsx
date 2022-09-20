@@ -41,7 +41,11 @@ const Task: FC<PropsType> = ({ task, deleteTask, pinTask }: PropsType) => {
       <TaskItem>
         <CheckButton onClick={handleCheck} checkedButton={checked} />
         {renameMenuOpened ? (
-          <RenameInput type="text" onKeyDown={handleEnter} />
+          <RenameInput
+            type="text"
+            defaultValue={task.taskName}
+            onKeyDown={handleEnter}
+          />
         ) : (
           <TaskDescription checkedButton={checked}>
             {task.taskName}
