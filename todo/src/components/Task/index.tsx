@@ -48,6 +48,14 @@ const Task: FC<PropsType> = ({ task, deleteTask, pinTask }: PropsType) => {
             <ul>
               <li onClick={() => setMenuOpened(!menuOpened)}>
                 <li onClick={() => pinTask(task.id, task.isPinned)}>
+                  <span className="material-symbols-outlined">
+                    drive_file_rename_outline
+                  </span>
+                  <p>Rename</p>
+                </li>
+              </li>
+              <li onClick={() => setMenuOpened(!menuOpened)}>
+                <li onClick={() => pinTask(task.id, task.isPinned)}>
                   <span className="material-symbols-outlined">push_pin</span>
                   <p>{task.isPinned ? "Unpin" : "Pin on the Top"}</p>
                 </li>
