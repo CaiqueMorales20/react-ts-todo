@@ -80,7 +80,6 @@ export const DotsIcon = styled.span`
 
 export const Options = styled.div`
   background-color: #484f59;
-  width: max-content;
   position: absolute;
   right: 0rem;
   top: 2rem;
@@ -91,14 +90,15 @@ export const Options = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 1em;
+    width: 8rem;
+    gap: 1.5em;
   }
 
   & > ul li,
   & > ul div {
     display: flex;
     align-items: center;
-    gap: 0.5em;
+    gap: 0.75em;
     cursor: pointer;
     width: 100%;
   }
