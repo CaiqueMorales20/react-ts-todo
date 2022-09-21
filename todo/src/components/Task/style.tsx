@@ -19,8 +19,18 @@ export const TaskS = styled.li`
 
 export const TaskItem = styled.div`
   display: flex;
+  width: 100%;
   align-items: center;
   gap: 0.5em;
+`;
+
+export const RenameInput = styled.input`
+  width: 100%;
+  background-color: #484f59;
+  padding: 0.5em 1em;
+  color: #ffffff;
+  border: 1px solid #2c3137;
+  margin-right: 1em;
 `;
 
 export const CheckButton = styled.button<ButtonProps>`
@@ -92,13 +102,4 @@ export const Options = styled.div`
     cursor: pointer;
     width: 100%;
   }
-`;
-
-export const RenameInput = styled.input`
-  width: min(20rem, 100%);
-  background-color: #484f59;
-  padding: 0.5em 1em;
-  color: #ffffff;
-  border: 1px solid #2c3137;
-  overflow-wrap: break-word;
 `;

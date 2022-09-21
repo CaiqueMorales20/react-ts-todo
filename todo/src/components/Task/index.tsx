@@ -88,14 +88,15 @@ const Task: FC<PropsType> = ({ task, deleteTask, pinTask }: PropsType) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setRenamedTaskName(e.currentTarget.value);
   };
+  const inputRef = useRef(null);
+
+  const showRenameInput = (): void => {
+    setRenameMenuOpened(!renameMenuOpened);
+  };
 
   return (
     <TaskS>
       <TaskItem>
-        <CheckButton
-          onClick={() => setChecked(!checked)}
-          checkedButton={checked}
-        />
         {renameMenuOpened ? (
           <RenameInput
             type="text"
@@ -104,9 +105,15 @@ const Task: FC<PropsType> = ({ task, deleteTask, pinTask }: PropsType) => {
             onChange={handleChange}
           />
         ) : (
-          <TaskDescription checkedButton={checked}>
-            {task.taskName}
-          </TaskDescription>
+          <>
+            <CheckButton
+              onClick={() => setChecked(!checked)}
+              checkedButton={checked}
+            />
+            <TaskDescription checkedButton={checked}>
+              {task.taskName}
+            </TaskDescription>
+          </>
         )}
       </TaskItem>
       <Dots>
@@ -120,11 +127,11 @@ const Task: FC<PropsType> = ({ task, deleteTask, pinTask }: PropsType) => {
           <Options ref={wrapperRef}>
             <ul>
               <li onClick={() => setMenuOpened(!menuOpened)}>
-                <div onClick={() => setRenameMenuOpened(!renameMenuOpened)}>
+                <div onClick={showRenameInput}>
                   <span className="material-symbols-outlined">
                     drive_file_rename_outline
                   </span>
-                  <p>Rename</p>
+                  <p>{renameMenuOpened ? "Save" : "Rename"}</p>
                 </div>
               </li>
               <li onClick={() => setMenuOpened(!menuOpened)}>
