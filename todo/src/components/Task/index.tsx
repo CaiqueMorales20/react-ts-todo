@@ -56,7 +56,7 @@ const Task: FC<PropsType> = ({ task, deleteTask, pinTask }: PropsType) => {
   ): void => {
     if (e.key === "Enter") {
       setRenameMenuOpened(false);
-
+      if (renamedTaskName.length === 0) return;
       if (isPinned) {
         const filteredPinnedTodoList = pinnedTodoList.filter((task) => {
           return taskId !== task.id;
@@ -98,7 +98,7 @@ const Task: FC<PropsType> = ({ task, deleteTask, pinTask }: PropsType) => {
         />
         {renameMenuOpened ? (
           <RenameInput
-            type="textarea"
+            type="text"
             defaultValue={task.taskName}
             onKeyDown={(e) => handleEnter(e, task.id, task.isPinned)}
             onChange={handleChange}

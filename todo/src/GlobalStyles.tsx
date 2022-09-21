@@ -19,6 +19,7 @@ export const GlobalStyle = createGlobalStyle`
     background-color: #FF3CAC;  
     background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
     font-family: 'Anek Telugu', sans-serif;
+    letter-spacing: .5px;
   }
   ul{
     list-style: none;

@@ -18,7 +18,6 @@ export const TaskS = styled.li`
 `;
 
 export const TaskItem = styled.div`
-  width: 100%;
   display: flex;
   align-items: center;
   gap: 0.5em;
@@ -32,6 +31,7 @@ export const CheckButton = styled.button<ButtonProps>`
   border-radius: 0.2em;
   background-color: #3b424a;
   cursor: pointer;
+  aspect-ratio: 1;
 
   ${(props) =>
     props.checkedButton
@@ -45,8 +45,9 @@ export const TaskDescription = styled.p<ButtonProps>`
   position: relative;
   left: 0;
   top: 0;
-  margin-left: 1em;
+  margin-inline: 0.5em;
   margin-bottom: -0.5rem;
+  word-break: break-all;
 
   /* When Checked */
   ${(props) =>
@@ -96,7 +97,6 @@ export const Options = styled.div`
 export const RenameInput = styled.input`
   width: min(20rem, 100%);
   background-color: #484f59;
-  margin-right: 1em;
   padding: 0.5em 1em;
   color: #ffffff;
   border: 1px solid #2c3137;
