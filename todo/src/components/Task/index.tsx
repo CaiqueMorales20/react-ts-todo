@@ -99,6 +99,7 @@ const Task: FC<PropsType> = ({ task, deleteTask, pinTask }: PropsType) => {
       <TaskItem>
         {renameMenuOpened ? (
           <RenameInput
+            autoFocus
             type="text"
             defaultValue={task.taskName}
             onKeyDown={(e) => handleEnter(e, task.id, task.isPinned)}
