@@ -111,7 +111,7 @@ const Task: FC<PropsType> = ({ task, deleteTask, pinTask }: PropsType) => {
       </TaskItem>
       <Dots>
         <DotsIcon
-          onClick={() => setMenuOpened(!menuOpened)}
+          onClick={() => setMenuOpened(true)}
           className="material-symbols-outlined"
         >
           more_horiz

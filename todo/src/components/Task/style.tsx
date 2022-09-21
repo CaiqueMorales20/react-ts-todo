@@ -18,6 +18,7 @@ export const TaskS = styled.li`
 `;
 
 export const TaskItem = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 0.5em;
@@ -44,6 +45,7 @@ export const TaskDescription = styled.p<ButtonProps>`
   position: relative;
   left: 0;
   top: 0;
+  margin-left: 1em;
   margin-bottom: -0.5rem;
 
   /* When Checked */
@@ -92,8 +94,11 @@ export const Options = styled.div`
 `;
 
 export const RenameInput = styled.input`
+  width: min(20rem, 100%);
   background-color: #484f59;
+  margin-right: 1em;
   padding: 0.5em 1em;
   color: #ffffff;
   border: 1px solid #2c3137;
+  overflow-wrap: break-word;
 `;
