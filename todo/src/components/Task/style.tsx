@@ -87,6 +87,7 @@ export const Options = styled.div`
     align-items: center;
     gap: 0.5em;
     cursor: pointer;
+    width: 100%;
   }
 `;
 

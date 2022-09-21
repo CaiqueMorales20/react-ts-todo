@@ -1,5 +1,6 @@
 // Imports
-import React, { FC, useState, useRef, useEffect } from "react";
+import React, { FC, useState, useRef, useEffect, useContext } from "react";
+import { TaskContext } from "../../contexts/TaskContext";
 import { ITask } from "../../interface";
 
 // Styled Components
@@ -25,6 +26,10 @@ const Task: FC<PropsType> = ({ task, deleteTask, pinTask }: PropsType) => {
   const [checked, setChecked] = useState<boolean>(false);
   const [menuOpened, setMenuOpened] = useState<boolean>(false);
   const [renameMenuOpened, setRenameMenuOpened] = useState<boolean>(false);
+  const [renamedTaskName, setRenamedTaskName] = useState<string>("");
+
+  const { todoList, setTodoList, pinnedTodoList, setPinnedTodoList } =
+    useContext(TaskContext);
 
   function useOutsideAlerter(ref: any) {
     useEffect(() => {
@@ -41,29 +46,62 @@ const Task: FC<PropsType> = ({ task, deleteTask, pinTask }: PropsType) => {
       };
     }, [ref]);
   }
-
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
 
-  const handleCheck = (): void => {
-    setChecked(!checked);
-  };
-
-  const handleEnter = (e: React.KeyboardEvent): void => {
+  const handleEnter = (
+    e: React.KeyboardEvent,
+    taskId: number,
+    isPinned: boolean
+  ): void => {
     if (e.key === "Enter") {
       setRenameMenuOpened(false);
+
+      if (isPinned) {
+        const filteredPinnedTodoList = pinnedTodoList.filter((task) => {
+          return taskId !== task.id;
+        });
+
+        const newTask = {
+          taskName: renamedTaskName,
+          id: task.id,
+          isPinned: task.isPinned,
+        };
+
+        return setPinnedTodoList([...filteredPinnedTodoList, newTask]);
+      }
+
+      const filteredTodoList = todoList.filter((task) => {
+        return taskId !== task.id;
+      });
+
+      const newTask = {
+        taskName: renamedTaskName,
+        id: task.id,
+        isPinned: task.isPinned,
+      };
+
+      return setTodoList([...filteredTodoList, newTask]);
     }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setRenamedTaskName(e.currentTarget.value);
   };
 
   return (
     <TaskS>
       <TaskItem>
-        <CheckButton onClick={handleCheck} checkedButton={checked} />
+        <CheckButton
+          onClick={() => setChecked(!checked)}
+          checkedButton={checked}
+        />
         {renameMenuOpened ? (
           <RenameInput
-            type="text"
+            type="textarea"
             defaultValue={task.taskName}
-            onKeyDown={handleEnter}
+            onKeyDown={(e) => handleEnter(e, task.id, task.isPinned)}
+            onChange={handleChange}
           />
         ) : (
           <TaskDescription checkedButton={checked}>
